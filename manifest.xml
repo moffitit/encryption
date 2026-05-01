@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xsi:type="MailApp">
+
+  <Id>D89D30D1-7601-461E-99F4-7E48E45A437B</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Your Organisation</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Testing"/>
+  <Description DefaultValue="Detects sensitive information and applies Microsoft IRM / Sensitivity Labels before sending."/>
+  <IconUrl DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://web.moffit.com.au/encrypt-test/support.html"/>
+
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.3"/>
+    </Sets>
+  </Requirements>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+  </Rule>
+
+  <!-- V1_0: ribbon button only -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="FunctionFile"/>
+
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="irmGroup">
+                <Label resid="GroupLabel"/>
+                <Control xsi:type="Button" id="openTaskPaneBtn">
+                  <Label resid="TaskPaneButtonLabel"/>
+                  <Supertip>
+                    <Title resid="TaskPaneSuperTipTitle"/>
+                    <Description resid="TaskPaneSuperTipDescription"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="TaskPaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="TaskPaneUrl" DefaultValue="https://web.moffit.com.au/encrypt-test/taskpane.html"/>
+        <bt:Url id="FunctionFile" DefaultValue="https://web.moffit.com.au/encrypt-test/commands.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GroupLabel" DefaultValue="Email Security"/>
+        <bt:String id="TaskPaneButtonLabel" DefaultValue="IRM Check"/>
+        <bt:String id="TaskPaneSuperTipTitle" DefaultValue="IRM Encryption Check"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="TaskPaneSuperTipDescription" DefaultValue="Scan this email for sensitive content and apply Microsoft IRM / Sensitivity Labels before sending."/>
+      </bt:LongStrings>
+    </Resources>
+
+    <!-- V1_1: on-send event (requires Mailbox 1.5 + Exchange admin policy) -->
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.5">
+          <bt:Set Name="Mailbox"/>
+        </bt:Sets>
+      </Requirements>
+
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <FunctionFile resid="FunctionFile"/>
+            <ExtensionPoint xsi:type="Events">
+              <Event Type="ItemSend" FunctionExecution="synchronous" FunctionName="onItemSend"/>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="TaskPaneUrl" DefaultValue="https://web.moffit.com.au/encrypt-test/taskpane.html"/>
+          <bt:Url id="FunctionFile" DefaultValue="https://web.moffit.com.au/encrypt-test/commands.html"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="GroupLabel" DefaultValue="Email Security"/>
+          <bt:String id="TaskPaneButtonLabel" DefaultValue="IRM Check"/>
+          <bt:String id="TaskPaneSuperTipTitle" DefaultValue="IRM Encryption Check"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="TaskPaneSuperTipDescription" DefaultValue="Scan this email for sensitive content and apply Microsoft IRM / Sensitivity Labels before sending."/>
+        </bt:LongStrings>
+      </Resources>
+
+    </VersionOverrides>
+
+  </VersionOverrides>
+</OfficeApp>
