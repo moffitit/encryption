@@ -29,6 +29,14 @@
     </Sets>
   </Requirements>
 
+  <FormSettings>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/taskpane.html"/>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
   <Permissions>ReadWriteItem</Permissions>
 
   <Rule xsi:type="RuleCollection" Mode="Or">
