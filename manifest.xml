@@ -5,15 +5,15 @@
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
   xsi:type="MailApp">
 
-  <Id>D89D30D1-7601-461E-99F4-7E48E45A437B</Id>
+  <Id>4211FE53-C014-4F9F-8587-D5806FD8039D</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Your Organisation</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Testing"/>
+  <DisplayName DefaultValue="IRM Encryption Check"/>
   <Description DefaultValue="Detects sensitive information and applies Microsoft IRM / Sensitivity Labels before sending."/>
-  <IconUrl DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="https://web.moffit.com.au/encrypt-test/support.html"/>
+  <IconUrl DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/support.html"/>
 
   <Hosts>
     <Host Name="Mailbox"/>
@@ -73,13 +73,13 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="TaskPaneUrl" DefaultValue="https://web.moffit.com.au/encrypt-test/taskpane.html"/>
-        <bt:Url id="FunctionFile" DefaultValue="https://web.moffit.com.au/encrypt-test/commands.html"/>
+        <bt:Url id="TaskPaneUrl" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/taskpane.html"/>
+        <bt:Url id="FunctionFile" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/commands.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Email Security"/>
@@ -112,13 +112,13 @@
 
       <Resources>
         <bt:Images>
-          <bt:Image id="Icon.16x16" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-16.png"/>
-          <bt:Image id="Icon.32x32" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-32.png"/>
-          <bt:Image id="Icon.80x80" DefaultValue="https://web.moffit.com.au/encrypt-test/assets/icon-80.png"/>
+          <bt:Image id="Icon.16x16" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="TaskPaneUrl" DefaultValue="https://web.moffit.com.au/encrypt-test/taskpane.html"/>
-          <bt:Url id="FunctionFile" DefaultValue="https://web.moffit.com.au/encrypt-test/commands.html"/>
+          <bt:Url id="TaskPaneUrl" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/taskpane.html"/>
+          <bt:Url id="FunctionFile" DefaultValue="https://yellow-bush-030891100.7.azurestaticapps.net/commands.html"/>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="Email Security"/>
