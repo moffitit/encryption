@@ -21,7 +21,7 @@ Office.onReady(function () {
 function onItemSend(event) {
   const item = Office.context.mailbox.item;
 
-  item.internetHeaders.getAsync(['X-Reviewed-By-Addin'], function (headerResult) {
+  item.internetHeaders.getAsync(['X-Reviewed-By-Addin', 'X-IRM-Bypassed'], function (headerResult) {
     if (headerResult.status === Office.AsyncResultStatus.Failed) {
       // Can't read headers — fail open to avoid disrupting send flow
       event.completed({ allowEvent: true });

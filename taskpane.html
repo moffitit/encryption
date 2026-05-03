@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
   <title>IRM Encryption Check</title>
   <style>
     :root {
@@ -255,6 +256,22 @@
     .dots span:nth-child(2) { animation-delay: .2s; }
     .dots span:nth-child(3) { animation-delay: .4s; }
 
+    .bypass-row {
+      margin-top: 8px;
+      text-align: center;
+    }
+    .btn-bypass {
+      background: none;
+      border: none;
+      font-size: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      padding: 4px;
+      transition: color .15s;
+    }
+    .btn-bypass:hover { color: var(--danger); }
     .footer {
       margin-top: 14px;
       padding-top: 11px;
@@ -341,16 +358,18 @@
   <button class="btn btn-primary" id="applyBtn" onclick="apply()" disabled>Apply IRM &amp; Continue</button>
 </div>
 
+<div class="bypass-row">
+  <button class="btn-bypass" onclick="bypass()">⚠ Bypass &amp; Send Without IRM</button>
+</div>
+
 <div class="footer">IRM Check Add-in · v1.0 &nbsp;·&nbsp; Scanning runs locally — no data leaves Outlook</div>
 
 <script>
-/* office.js is loaded just before </body> via a synchronous script tag.
-   Its onload calls officeReady(), which triggers Office.onReady and
-   clears Outlook's "working on your request" spinner. */
-function officeReady() {
-  Office.onReady(function () {
-    // UI is static HTML — nothing to initialise.
-  });
+/* Office.js is loaded in <head>. Both initialize and onReady are
+   set so the spinner clears on all Outlook versions. */
+Office.initialize = function() {};
+if (Office.onReady) {
+  Office.onReady(function() {});
 }
 
 // ── Sensitive data patterns ────────────────────────────────────────────────
@@ -487,12 +506,30 @@ function dismiss() {
   try { Office.context.ui.closeContainer(); } catch(e) { window.close(); }
 }
 
+function bypass() {
+  if (!confirm('Are you sure you want to send without IRM protection?\n\nThis should only be used if the add-in is unavailable.')) return;
+  const item = Office.context.mailbox.item;
+  item.internetHeaders.setAsync(
+    { 'X-IRM-Bypassed': 'true', 'X-Reviewed-By-Addin': 'IRMCheck/1.0-bypass' },
+    function(result) {
+      showBanner('warn', '⚠ IRM bypassed — sending without protection. This action is logged.');
+      const applyBtn = document.getElementById('applyBtn');
+      applyBtn.textContent = '✓ Bypass Applied';
+      applyBtn.disabled = true;
+      applyBtn.style.background = '#d29922';
+      applyBtn.disabled = false;
+      setTimeout(function() {
+        try { Office.context.ui.closeContainer(); } catch(e) { window.close(); }
+      }, 1500);
+    }
+  );
+}
+
 function showBanner(type, msg) {
   const b = document.getElementById('banner');
   b.className = type;
   b.textContent = msg;
 }
 </script>
-<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" onload="officeReady()"></script>
 </body>
 </html>
